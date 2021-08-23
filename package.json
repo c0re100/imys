@@ -1,0 +1,31 @@
+{
+  "name": "imys",
+  "version": "1.0.0",
+  "author": "c0re100 <c0re@husky.dev>",
+  "description": "愛麗絲秘跡！〜少女們編織夢的秘境〜(台版/R)",
+  "license": "GPL-3.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^13.2.1",
+    "electron-builder": "^22.11.7"
+  },
+  "build": {
+    "productName": "imys",
+    "appId": "august.dmm.imys",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+       "index.js"
+    ],
+    "extraFiles": [
+    ],
+    "win": {
+      "icon": "icon.ico"
+    }
+  }
+}
