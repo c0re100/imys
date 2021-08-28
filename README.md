@@ -26,7 +26,7 @@
 
 ## 使用方法
 
-1. 到 [Release](https://github.com/c0re100/imys/releases) 下載並解壓
+1. 到 [Release](https://github.com/c0re100/imys/releases) 下載最新版本並解壓
 2. 打開imys.exe
 3. 然後，不用教了吧.........
 
@@ -41,5 +41,11 @@
 `yarn start`
 
 ---
+
+## 嗚謝
+
+1. [@kitce](https://github.com/kitce), [@pokeGuys](https://github.com/pokeguys), [@nodegin](https://github.com/nodegin)
+2. [Force preserveDrawingBuffer to true](https://github.com/greggman/webgl-helpers/blob/master/webgl-force-preservedrawingbuffer.js)
+3. [Context menu enabler](https://greasyfork.org/scripts/23772-absolute-enable-right-click-copy/code/Absolute%20Enable%20Right%20Click%20%20Copy.user.js)
 
 AUGUST，你們快點回來做Galgame啦🥺

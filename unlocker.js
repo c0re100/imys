@@ -1,5 +1,6 @@
 (function() {
     // Set preserveDrawingBuffer to true, so we can save canvas as image :)
+    // Source from https://github.com/greggman/webgl-helpers/blob/master/webgl-force-preservedrawingbuffer.js
     if (typeof HTMLCanvasElement !== "undefined") {
         wrapGetContext(HTMLCanvasElement);
     }
