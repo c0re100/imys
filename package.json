@@ -20,12 +20,15 @@
       "output": "build"
     },
     "files": [
-       "index.js"
+      "index.js",
+      "unlocker.js"
     ],
-    "extraFiles": [
-    ],
+    "extraFiles": [],
     "win": {
       "icon": "icon.ico"
     }
+  },
+  "dependencies": {
+    "electron-context-menu": "^3.1.1"
   }
 }
