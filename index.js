@@ -14,7 +14,7 @@ contextMenu({
                         frame.executeJavaScript(`
                             function takeScreenshot() {
                                 let canvas = document.querySelector('#unity-canvas');
-                                return canvas.toDataURL()
+                                return canvas.toDataURL("image/png")
                             }
                             takeScreenshot()
                         `).then((result) => {
