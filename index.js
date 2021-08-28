@@ -39,7 +39,7 @@ contextMenu({
                                   a.download = 'imys_screenshot_' + new Date().toLocaleString("en-CA", {hour12: false, timeZone: "Asia/Hong_Kong"}).
                                         replace(/-/g, '_').
                                         replace(/, /g, '_').
-                                        replace(/:/g, '_') + '.jpg';
+                                        replace(/:/g, '_') + '.png';
                                   a.href = URL.createObjectURL(blob);
                                   document.body.appendChild(a);
                                   a.click();
