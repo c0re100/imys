@@ -3,6 +3,9 @@ const contextMenu = require('electron-context-menu');
 const path = require("path");
 const nativeImage = require('electron').nativeImage
 
+app.commandLine.appendSwitch("enable-native-gpu-memory-buffers")
+app.commandLine.appendSwitch("enable-gpu-memory-buffer-compositor-resources")
+
 contextMenu({
     prepend: (defaultActions, parameters, browserWindow) => [
         {
