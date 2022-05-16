@@ -1,5 +1,5 @@
 const {app, BrowserWindow, webFrameMain, clipboard} = require('electron')
-const path = require("path");
+const path = require("path")
 const menu = require('./menu')
 
 app.setAppUserModelId('imys_r')
@@ -21,6 +21,22 @@ async function startIMYS() {
             preload: path.join(__dirname, 'unlocker.js'),
         }
     })
+    menu.CustomMenu(imysWindow)
+
+    const webRequest = imysWindow.webContents.session.webRequest
+    const filter = {
+        urls: ['https://johren-r18.irismystery.com/abysshole/battle_skip?v=*']
+    }
+
+    webRequest.onBeforeSendHeaders(filter,
+        (details, callback) => {
+            if (menu.GetBlockSkip()) {
+                callback({cancel: true})
+            } else {
+                callback({})
+            }
+        }
+    )
 
     await imysWindow.loadURL('https://www.johren.games/games/imys-r-zh-tw/play/')
 }

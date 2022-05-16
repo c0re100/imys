@@ -1,5 +1,5 @@
 const contextMenu = require("electron-context-menu");
-const {nativeImage, clipboard} = require("electron");
+const {nativeImage, clipboard, Menu} = require("electron");
 
 function Create(contents) {
     contextMenu({
@@ -57,4 +57,71 @@ function Create(contents) {
     });
 }
 
-module.exports = {Create}
+let gameWindow = null
+let blockSkip = true
+
+let Template = [
+    {
+        label: "File",
+        submenu: [
+            {
+                role: 'quit',
+                label: "Exit",
+            }
+        ]
+    },
+    {
+        label: "View",
+        submenu: [
+            {
+                role: "reload",
+                label: 'Reload'
+            },
+            {
+                role: "forceReload",
+                label: 'Force Reload'
+            },
+            {
+                role: "toggleDevTools",
+                label: 'Toggle Developer Tools'
+            }
+        ]
+    },
+    {
+        label: "Tools",
+        submenu: [
+            {
+                label: 'Block abysshole skip ✔️',
+                click: function () {
+                    blockSkip = !blockSkip;
+                    RefreshCustomMenuLabel()
+                }
+            }
+        ]
+    }
+]
+
+function RefreshCustomMenuLabel() {
+    // Block skip
+    if (blockSkip) {
+        Template[2].submenu[0].label = 'Block abysshole skip ✔️'
+    } else {
+        Template[2].submenu[0].label = 'Block abysshole skip ❌'
+    }
+
+    let menu = Menu.buildFromTemplate(Template);
+    Menu.setApplicationMenu(menu);
+}
+
+function CustomMenu(mainWindow) {
+    gameWindow = mainWindow
+
+    let menu = Menu.buildFromTemplate(Template)
+    Menu.setApplicationMenu(menu)
+}
+
+function GetBlockSkip() {
+    return blockSkip
+}
+
+module.exports = {Create, CustomMenu, GetBlockSkip}
