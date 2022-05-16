@@ -1,62 +1,9 @@
 const {app, BrowserWindow, webFrameMain, clipboard} = require('electron')
-const contextMenu = require('electron-context-menu');
 const path = require("path");
-const nativeImage = require('electron').nativeImage
+const menu = require('./menu')
 
 app.commandLine.appendSwitch("enable-native-gpu-memory-buffers")
 app.commandLine.appendSwitch("enable-gpu-memory-buffer-compositor-resources")
-
-contextMenu({
-    prepend: (defaultActions, parameters, browserWindow) => [
-        {
-            label: 'Copy image',
-            visible: parameters.mediaType === 'canvas',
-            click: (menuItem, browserWindow, event) => {
-                browserWindow.webContents.mainFrame.framesInSubtree.filter((frame) => {
-                    if (frame.url === 'https://johren-r18.irismystery.com/pc/iframe') {
-                        frame.executeJavaScript(`
-                            function takeScreenshot() {
-                                let canvas = document.querySelector('#unity-canvas');
-                                return canvas.toDataURL("image/png")
-                            }
-                            takeScreenshot()
-                        `).then((result) => {
-                            let b64 = nativeImage.createFromDataURL(result)
-                            clipboard.writeImage(b64)
-                        })
-                    }
-                })
-            }
-        },
-        {
-            label: 'Save image',
-            visible: parameters.mediaType === 'canvas',
-            click: (menuItem, browserWindow, event) => {
-                browserWindow.webContents.mainFrame.framesInSubtree.filter((frame) => {
-                    if (frame.url === 'https://johren-r18.irismystery.com/pc/iframe') {
-                        frame.executeJavaScript(`
-                            function saveImage() {
-                                let canvas = document.querySelector('#unity-canvas');
-                                canvas.toBlob((blob) => {
-                                  const a = document.createElement('a');
-                                  a.download = 'imys_screenshot_' + new Date().toLocaleString("en-CA", {hour12: false, timeZone: "Asia/Hong_Kong"}).
-                                        replace(/-/g, '_').
-                                        replace(/, /g, '_').
-                                        replace(/:/g, '_') + '.png';
-                                  a.href = URL.createObjectURL(blob);
-                                  document.body.appendChild(a);
-                                  a.click();
-                                  document.body.removeChild(a);
-                                });
-                            }
-                            saveImage()
-                        `)
-                    }
-                })
-            }
-        }
-    ]
-});
 
 async function startIMYS() {
     const imysWindow = new BrowserWindow({
@@ -74,3 +21,7 @@ async function startIMYS() {
 }
 
 app.on("ready", async () => startIMYS())
+
+app.on("web-contents-created", (e, contents) => {
+    menu.Create(contents)
+})
