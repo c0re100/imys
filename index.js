@@ -4,8 +4,14 @@ const menu = require('./menu')
 
 app.setAppUserModelId('imys_r')
 
-let p = path.join(__dirname, 'userdata')
-app.setPath('userData', p)
+if (process.execPath.match(/imys.exe/)) {
+    currPath = path.dirname(process.execPath)
+    let p = path.join(currPath, 'userdata')
+    app.setPath('userData', p)
+} else {
+    let p = path.join(__dirname, 'userdata')
+    app.setPath('userData', p)
+}
 
 app.commandLine.appendSwitch("enable-native-gpu-memory-buffers")
 app.commandLine.appendSwitch("enable-gpu-memory-buffer-compositor-resources")
