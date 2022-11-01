@@ -1,6 +1,7 @@
 const {app, BrowserWindow, webFrameMain, clipboard} = require('electron')
 const path = require("path")
 const menu = require('./menu')
+const proxy = require('./proxy')
 
 app.setAppUserModelId('imys_r')
 
@@ -13,8 +14,19 @@ if (process.execPath.match(/imys.exe/)) {
     app.setPath('userData', p)
 }
 
+let debug = false
+
 app.commandLine.appendSwitch("enable-native-gpu-memory-buffers")
 app.commandLine.appendSwitch("enable-gpu-memory-buffer-compositor-resources")
+app.commandLine.appendSwitch('ignore-certificate-errors', 'true')
+if (debug) {
+    app.commandLine.appendSwitch('proxy-server', '127.0.0.1:5678')
+} else {
+    app.commandLine.appendSwitch('proxy-server', '127.0.0.1:8765')
+}
+
+proxy.SetDebugMode(debug)
+proxy.startMITM()
 
 async function startIMYS() {
     const imysWindow = new BrowserWindow({

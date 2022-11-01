@@ -5,3 +5,4 @@ build/
 /.yarn/*
 /userdata/*
 /electron_cache/*
+*.exe
