@@ -11,7 +11,7 @@ function Create(contents) {
                 visible: parameters.mediaType === 'canvas',
                 click: (menuItem, browserWindow, event) => {
                     browserWindow.webContents.mainFrame.framesInSubtree.filter((frame) => {
-                        if (frame.url === 'https://johren-r18.irismystery.com/pc/iframe') {
+                        if (frame.url === 'https://rkyfxfex.aimia.dmmgames.com/pc/iframe') {
                             frame.executeJavaScript(`
                             function takeScreenshot() {
                                 let canvas = document.querySelector('#unity-canvas');
@@ -31,7 +31,7 @@ function Create(contents) {
                 visible: parameters.mediaType === 'canvas',
                 click: (menuItem, browserWindow, event) => {
                     browserWindow.webContents.mainFrame.framesInSubtree.filter((frame) => {
-                        if (frame.url === 'https://johren-r18.irismystery.com/pc/iframe') {
+                        if (frame.url === 'https://rkyfxfex.aimia.dmmgames.com/pc/iframe') {
                             frame.executeJavaScript(`
                             function saveImage() {
                                 let canvas = document.querySelector('#unity-canvas');

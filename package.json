@@ -1,8 +1,8 @@
 {
   "name": "imys",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": "c0re100 <c0re@husky.dev>",
-  "description": "愛麗絲秘跡！〜少女們編織夢的秘境〜(台版/R)",
+  "description": "愛麗絲秘跡！〜少女們編織夢的秘境〜(日版/R)",
   "license": "GPL-3.0",
   "main": "index.js",
   "scripts": {

@@ -43,7 +43,7 @@ async function startIMYS() {
 
     const webRequest = imysWindow.webContents.session.webRequest
     const filter = {
-        urls: ['https://johren-r18.irismystery.com/abysshole/battle_skip?v=*']
+        urls: ['https://rkyfxfex.aimia.dmmgames.com/abysshole/battle_skip?v=*']
     }
 
     webRequest.onBeforeSendHeaders(filter,
@@ -56,7 +56,7 @@ async function startIMYS() {
         }
     )
 
-    await imysWindow.loadURL('https://www.johren.games/games/imys-r-zh-tw/play/')
+    await imysWindow.loadURL('https://pc-play.games.dmm.co.jp/play/imys_r/')
 }
 
 app.on("ready", async () => startIMYS())
