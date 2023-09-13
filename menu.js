@@ -73,18 +73,17 @@ let Template = [
     {
         label: "View",
         submenu: [
-            {
-                role: "reload",
-                label: 'Reload'
-            },
-            {
-                role: "forceReload",
-                label: 'Force Reload'
-            },
-            {
-                role: "toggleDevTools",
-                label: 'Toggle Developer Tools'
-            }
+            {role: 'reload'},
+            {role: 'forceReload'},
+            {role: 'toggleDevTools'},
+            {type: 'separator'},
+            {role: 'resetZoom'},
+            {role: 'zoomIn', accelerator: 'CommandOrControl+='},
+            {role: 'zoomIn', accelerator: 'CommandOrControl+numadd', visible: false, acceleratorWorksWhenHidden: true},
+            {role: 'zoomOut'},
+            {role: 'zoomOut', accelerator: 'CommandOrControl+numsub', visible: false, acceleratorWorksWhenHidden: true},
+            {type: 'separator'},
+            {role: 'togglefullscreen'}
         ]
     },
     {
