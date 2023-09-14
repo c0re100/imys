@@ -1,4 +1,4 @@
-const {app, BrowserWindow, webFrameMain, clipboard} = require('electron')
+const {app, BrowserWindow, webFrameMain, clipboard, session } = require('electron')
 const path = require("path")
 const menu = require('./menu')
 const proxy = require('./proxy')
@@ -16,8 +16,6 @@ if (process.execPath.match(/imys.exe/)) {
 
 let debug = false
 
-app.commandLine.appendSwitch("enable-native-gpu-memory-buffers")
-app.commandLine.appendSwitch("enable-gpu-memory-buffer-compositor-resources")
 app.commandLine.appendSwitch('ignore-certificate-errors', 'true')
 if (debug) {
     app.commandLine.appendSwitch('proxy-server', '127.0.0.1:5678')
@@ -56,7 +54,12 @@ async function startIMYS() {
         }
     )
 
-    await imysWindow.loadURL('https://pc-play.games.dmm.co.jp/play/imys_r/')
+    session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+        details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1';
+        callback({ cancel: false, requestHeaders: details.requestHeaders });
+    });
+
+    await imysWindow.loadURL('https://games.dmm.co.jp/play/cloud')
 }
 
 app.on("ready", async () => startIMYS())
